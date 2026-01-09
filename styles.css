@@ -234,7 +234,7 @@ body {
   text-transform: uppercase;
   color: #e5e7eb;
   display: inline-block;
-  min-width: 30ch;      /* reserve space for longest line */
+  min-width: 30ch;
   text-align: center;
 }
 
@@ -758,4 +758,101 @@ body {
   .pillar-card {
     min-width: 190px;
   }
+}
+
+/* Archana chatbot widget */
+#archana-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+#archana-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #f5861f, #00b6c9);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.75);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+#archana-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.85);
+}
+
+#archana-window {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 320px;
+  max-height: 420px;
+  background: #032d33;
+  border-radius: 18px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.95);
+  border: 1px solid #f5861f;
+  display: none;
+  overflow: hidden;
+}
+
+#archana-header {
+  padding: 10px 14px;
+  background: #06252f;
+  color: #f9fafb;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#archana-messages {
+  padding: 10px 12px;
+  max-height: 320px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  color: #e5f4f5;
+}
+
+.archana-msg {
+  margin-bottom: 8px;
+}
+
+.archana-msg.user {
+  text-align: right;
+  color: #cbd5f5;
+}
+
+.archana-msg.bot {
+  text-align: left;
+  color: #e5f4f5;
+}
+
+#archana-form {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px;
+  background: #02161a;
+}
+
+#archana-input {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  background: #020617;
+  color: #f9fafb;
+}
+
+#archana-input:focus {
+  outline: none;
+  border-color: #00b6c9;
 }
