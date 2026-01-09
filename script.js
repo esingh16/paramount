@@ -636,4 +636,81 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 400);
     });
   }
+
+  // Archana chatbot UI
+  const archanaWidget = document.getElementById("archana-widget");
+  const archanaToggle = document.getElementById("archana-toggle");
+  const archanaWindow = document.getElementById("archana-window");
+  const archanaMessages = document.getElementById("archana-messages");
+  const archanaForm = document.getElementById("archana-form");
+  const archanaInput = document.getElementById("archana-input");
+
+  if (
+    archanaWidget &&
+    archanaToggle &&
+    archanaWindow &&
+    archanaForm &&
+    archanaInput &&
+    archanaMessages
+  ) {
+    archanaToggle.addEventListener("click", () => {
+      const isOpen = archanaWindow.style.display === "block";
+      archanaWindow.style.display = isOpen ? "none" : "block";
+      if (!isOpen && archanaMessages.children.length === 0) {
+        addArchanaMessage(
+          "Hi, I’m Archana. Ask me anything about Paramount Project Endeavors, our clients, or our rollout capabilities."
+        );
+      }
+    });
+
+    function addArchanaMessage(text, from = "bot") {
+      const div = document.createElement("div");
+      div.className = `archana-msg ${from}`;
+      div.textContent = text;
+      archanaMessages.appendChild(div);
+      archanaMessages.scrollTop = archanaMessages.scrollHeight;
+    }
+
+    archanaForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const question = archanaInput.value.trim();
+      if (!question) return;
+      archanaInput.value = "";
+      addArchanaMessage(question, "user");
+
+      const answer = getArchanaStaticReply(question);
+      addArchanaMessage(answer, "bot");
+    });
+  }
 });
+
+// Simple rule-based replies for Archana
+function getArchanaStaticReply(q) {
+  const text = q.toLowerCase();
+
+  if (text.includes("what do you do") || text.includes("company")) {
+    return "Paramount Project Endeavors is a turnkey interiors and rollout coordination firm, handling pan‑India delivery for brands across QSR, retail and entertainment formats.";
+  }
+
+  if (text.includes("clients") || text.includes("brands")) {
+    return "We have executed projects for brands like Dr. Agarwal’s Eye Hospital, Burger King, The Hazelnut Factory, McDonald’s, KFC, Croma, Domino’s, Taco Bell, Subway, Mr DIY and many others.";
+  }
+
+  if (text.includes("cities") || text.includes("locations") || text.includes("pan india")) {
+    return "Our team has delivered projects across major metros and key tier‑2 and tier‑3 cities, including Mumbai, Delhi‑NCR, Pune, Bangalore, Hyderabad, Lucknow, Kolkata, Jaipur and more.";
+  }
+
+  if (text.includes("contact") || text.includes("reach") || text.includes("email") || text.includes("phone")) {
+    return "You can contact us via the Get in touch section on this website. Use the enquiry form or write to info@ppepl.co.in, and our team will respond.";
+  }
+
+  if (text.includes("hello") || text.includes("hi") || text.includes("hey")) {
+    return "Hello! I’m Archana, your virtual assistant. Ask me about our company, the brands we work with, or where we have executed projects.";
+  }
+
+  if (text.includes("services") || text.includes("what do you deliver") || text.includes("scope")) {
+    return "Paramount delivers end‑to‑end interior execution, multi‑city rollout management, stakeholder coordination, and brand‑aligned quality assurance from shell to store opening.";
+  }
+
+  return "Thanks for your question. I’m Archana, a simple demo assistant right now, but I can still answer about our company, services, clients, cities and how to contact us.";
+}
